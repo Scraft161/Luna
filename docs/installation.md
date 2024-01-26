@@ -1,33 +1,8 @@
 # Installation
 
-## Archlinux ([AUR](https://aur.archlinux.org/packages/marswm))
-```sh
-paru -S marswm
-# or
-yay -S marswm
-```
+## Archlinux
 
-[`marswm-git`](https://aur.archlinux.org/packages/marswm) is also available as the development version.
-
-
-## NetBSD ([Official repositories](https://pkgsrc.se/wm/marswm/))
-```sh
-pkgin install marswm
-```
-
-or, if you prefer to build it from source
-
-```sh
-cd /usr/pkgsrc/wm/marswm
-make install
-```
-
-
-## Nix
-`marswm` is currently not officially packaged for Nix.
-You can use the derivation in [`examples/default.nix`](./examples/default.nix) to install it on your machine.
-Make sure to update the version number and hash accordingly.
-
+Luna is currently not packaged yet, SCDF packages will come once things are in a more stable state.
 
 ## Other ([cargo](https://crates.io/crates/marswm))
 This guide shows installation for a standard Linux distribution that supports the Standard File Hierarchy.

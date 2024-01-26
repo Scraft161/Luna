@@ -1,22 +1,37 @@
-# MARSWM Project
-`marswm` aims to be the rusty successor to [moonwm](https://github.com/jzbor/moonwm).
+# Luna
+`Luna` aims to be the rusty successor dwm.
+While not a direct clone of dwm a lot of functionality will mirror dwm.
+Luna itself is based on [marswm](https://github.com/jzbor/marswm); but makes different opinionated choices on how to handle certain aspects of window management.
+
 In addition to the window manager this repository also contains the [library](./libmars) it is built on, an accompanying [status bar](./marsbar) and an [ipc client](./mars-relay) to control the window manager from external scripts.
 
 You can find documentation on how to configure the window manger on [crates.io](https://docs.rs/crate/marswm) or in the [Github repo](https://github.com/jzbor/marswm/tree/master/marswm/README.md)
 
 *DISCLAIMER: Although already usable this is still in development. The library API as well as the window manager itself might be subject to frequent changes.*
 
+## Usage
+
+Using Luna as a daily driver is not recommended for the time being as I am implementing and changing functionality to suit my needs.
+I suggest you wait till Luna is in a stable state before using it.
+
+## Roadmap
+
+1. [ ] Diverge from marswm
+    - [ ] implement toml config
+    - [ ] implement tags in favor of workspaces
+    - [ ] update branding throughout the project
+
 ## The Components
 
-### marswm
+### luna
 
-`marswm`'s goal is to have a simple tiling window manager with tiling and workspaces for myself.
+`luna`'s goal is to have a simple tiling window manager with tiling and tags.
 
 Features:
 * dwm-style layouts
-* workspaces (similar to i3 or bspwm)
+* dwm-style tags
 * IPC using X11 atoms (`mars-relay`)
-* YAML for configuration and key bindings
+* TOML and YAML for configuration and key bindings
 
 ### libmars
 
