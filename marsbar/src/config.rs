@@ -11,7 +11,7 @@ use crate::tray::*;
 const CONFIG_NAME: &str = "marswm";
 const CONFIG_FILE: &str = "marsbar.yaml";
 
-const DEFAULT_FONT: &str = "serif";
+const DEFAULT_FONT: &str = "sans";
 const DEFAULT_TEXT_PADDING_HORZ: u32 = 5;
 const DEFAULT_TEXT_PADDING_VERT: u32 = 0;
 
@@ -68,7 +68,7 @@ impl Default for BarStyle {
         BarStyle {
             background: 0x262626,
             expand_workspace_widgets: false,
-            height: 31,
+            height: 27,
             font: DEFAULT_FONT.to_owned(),
             workspaces: ContainerWidgetStyle::default_workspaces(),
             title: TextWidgetStyle::default(),

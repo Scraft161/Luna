@@ -11,12 +11,13 @@ use crate::*;
 use crate::layouts::*;
 
 
-pub const DEFAULT_MODKEY: Modifier = Modifier::Mod4;
+pub const MODKEY: Modifier = Modifier::Mod1;
+pub const STARTKEY: Modifier = Modifier::Mod4;
 
 
 macro_rules! client_button_binding {
     ($button:expr, $action:expr $(, ($($add_mods:ident ),*))?) => {
-        ButtonBinding::new(vec![DEFAULT_MODKEY $(, $($add_mods),*)?], $button, vec![Window, Frame], $action)
+        ButtonBinding::new(vec![MODKEY $(, $($add_mods),*)?], $button, vec![Window, Frame], $action)
     }
 }
 
@@ -280,50 +281,53 @@ pub fn default_key_bindings(nworkspaces: u32) -> Vec<KeyBinding> {
     use BindingAction::*;
     use Modifier::*;
     let mut bindings = vec![
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Delete", CloseClient),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "n", CycleLayout),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "t", SetLayout(LayoutType::Stack)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Control], "t", SetLayout(LayoutType::BottomStack)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "c", SetLayout(LayoutType::Deck)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "m", SetLayout(LayoutType::Monocle)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "t", SetLayout(LayoutType::Dynamic)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "f", SetLayout(LayoutType::Floating)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "BackSpace", MoveMain),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "a", IncNMain(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "x", IncNMain(-1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Control], "a", ChangeMainRatio(0.10)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Control], "x", ChangeMainRatio(-0.10)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "j", CycleClient(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "k", CycleClient(-1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "h", FocusMain),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "l", FocusMain),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "j", StackMove(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "k", StackMove(-1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "period", CycleWorkspace(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "comma", CycleWorkspace(-1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "f", ToggleFullscreen),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "space", ToggleFloating),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "z", CenterClient),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Tab", PreviousWorkspace),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Return", Execute("$TERMINAL".to_owned())),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "d", Execute("rofi -show drun".to_owned())),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Control], "BackSpace", Restart),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Up", SetStackPosition(StackPosition::Top)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Right", SetStackPosition(StackPosition::Right)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Down", SetStackPosition(StackPosition::Bottom)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Left", SetStackPosition(StackPosition::Left)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "semicolon", SetStackMode(StackMode::Split)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "apostrophe", SetStackMode(StackMode::Deck)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Next", CycleMonitor(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY], "Prior", CycleMonitor(-1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "Next", MoveMonitor(1)),
-        KeyBinding::new(vec![DEFAULT_MODKEY, Shift], "Prior", MoveMonitor(-1)),
+        /*              modifier               key           action */
+        KeyBinding::new(vec![MODKEY],          "d",          Execute("dmenu_run".to_owned())),
+        KeyBinding::new(vec![MODKEY],          "r",          Execute("rofi -show drun".to_owned())),
+        KeyBinding::new(vec![STARTKEY],        "t",          Execute("alacritty".to_owned())),
+        KeyBinding::new(vec![MODKEY],          "j",          CycleClient(1)),
+        KeyBinding::new(vec![MODKEY],          "k",          CycleClient(-1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "j",          StackMove(1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "k",          StackMove(-1)),
+        KeyBinding::new(vec![MODKEY],          "i",          IncNMain(1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "i",          IncNMain(-1)),
+        KeyBinding::new(vec![MODKEY],          "l",          ChangeMainRatio(0.05)),
+        KeyBinding::new(vec![MODKEY],          "h",          ChangeMainRatio(-0.05)),
+        KeyBinding::new(vec![MODKEY],          "space",      MoveMain),
+        KeyBinding::new(vec![MODKEY],          "Tab",        PreviousWorkspace),
+        KeyBinding::new(vec![MODKEY],          "q",          CloseClient),
+        KeyBinding::new(vec![MODKEY],          "t",          SetLayout(LayoutType::Dynamic)),
+        KeyBinding::new(vec![MODKEY],          "f",          SetLayout(LayoutType::Floating)),
+        KeyBinding::new(vec![MODKEY],          "m",          SetLayout(LayoutType::Monocle)),
+        KeyBinding::new(vec![MODKEY, Shift],   "space",      ToggleFloating),
+        KeyBinding::new(vec![MODKEY],          "F12",        CycleWorkspace(1)),
+        KeyBinding::new(vec![MODKEY],          "F11",        CycleWorkspace(-1)),
+        KeyBinding::new(vec![MODKEY],          "comma",      CycleMonitor(-1)),
+        KeyBinding::new(vec![MODKEY],          "period",     CycleMonitor(1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "comma",      MoveMonitor(-1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "period",     MoveMonitor(1)),
+
+        KeyBinding::new(vec![MODKEY],          "n",          CycleLayout),
+        KeyBinding::new(vec![MODKEY],          "s",          SetLayout(LayoutType::Stack)),
+        KeyBinding::new(vec![MODKEY, Control], "t",          SetLayout(LayoutType::BottomStack)),
+        KeyBinding::new(vec![MODKEY],          "c",          SetLayout(LayoutType::Deck)),
+        //KeyBinding::new(vec![MODKEY],          "h",          FocusMain),
+        //KeyBinding::new(vec![MODKEY],          "l",          FocusMain),
+        //KeyBinding::new(vec![MODKEY],          "f",          ToggleFullscreen),
+        //KeyBinding::new(vec![MODKEY],          "z",          CenterClient),
+        KeyBinding::new(vec![MODKEY, Control], "BackSpace",  Restart),
+        KeyBinding::new(vec![MODKEY],          "Down",       SetStackPosition(StackPosition::Top)),
+        KeyBinding::new(vec![MODKEY],          "Left",       SetStackPosition(StackPosition::Right)),
+        KeyBinding::new(vec![MODKEY],          "Up",         SetStackPosition(StackPosition::Bottom)),
+        KeyBinding::new(vec![MODKEY],          "Right",      SetStackPosition(StackPosition::Left)),
+        //KeyBinding::new(vec![MODKEY],          "semicolon",  SetStackMode(StackMode::Split)),
+        //KeyBinding::new(vec![MODKEY],          "apostrophe", SetStackMode(StackMode::Deck)),
     ];
 
     for i in 0..cmp::min(nworkspaces, 9) {
-        let key_name = format!("{}", i + 1);
-        bindings.push(KeyBinding::new(vec!(DEFAULT_MODKEY), &key_name, SwitchWorkspace(i)));
-        bindings.push(KeyBinding::new(vec!(DEFAULT_MODKEY, Modifier::Shift), &key_name, MoveWorkspace(i)));
+        let key_name = format!("F{}", i + 1);
+        bindings.push(KeyBinding::new(vec!(MODKEY), &key_name, SwitchWorkspace(i)));
+        bindings.push(KeyBinding::new(vec!(MODKEY, Modifier::Shift), &key_name, MoveWorkspace(i)));
     }
 
     bindings

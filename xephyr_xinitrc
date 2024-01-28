@@ -1,5 +1,12 @@
 #test programs
-xclock &
+#xclock &
 xterm &
 
-exec ./target/debug/marswm
+nitrogen --restore
+
+$HOME/.local/share/scdf/bin/scdf-status &
+sxhkd &
+dunst &
+fcitx5 &
+./target/debug/marsbar -c ~/.config/luna/marsbar.yaml &
+exec ./target/debug/luna

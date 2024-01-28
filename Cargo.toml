@@ -10,7 +10,7 @@ resolver = "2"
 [workspace.package]
 version = "0.5.3"
 edition = "2021"
-authors = ["jzbor"]
+authors = ["jzbor", "Scraft161"]
 repository = "https://github.com/jzbor/marswm"
 license-file = "LICENSE"
 readme = "README.md"

@@ -1,5 +1,5 @@
 [package]
-name = "marswm"
+name = "luna"
 description = "A simple and modern dynamic tiling window manager"
 readme = "README.md"
 workspace = ".."

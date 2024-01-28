@@ -139,7 +139,7 @@ fn main() {
             }
         }
 
-        let mut backend = X11Backend::init("marswm").unwrap();
+        let mut backend = X11Backend::init("luna").unwrap();
         let mut wm = MarsWM::new(&mut backend, config, key_bindings, button_bindings, rules);
         backend.run(&mut wm);
     }

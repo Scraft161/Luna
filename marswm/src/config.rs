@@ -9,13 +9,14 @@ use crate::layouts::StackMode;
 use crate::layouts::StackPosition;
 use crate::rules::*;
 
-const BUTTON_BINDINGS_FILE: &str = "buttonbindings.yaml";
-const BUTTON_BINDINGS_EXT_FILE: &str = "buttonbindings_ext.yaml";
-const CONFIG_DIR: &str = "marswm";
-const CONFIG_FILE: &str = "marswm.yaml";
-const KEY_BINDINGS_FILE: &str = "keybindings.yaml";
-const KEY_BINDINGS_EXT_FILE: &str = "keybindings_ext.yaml";
-const RULES_FILE: &str = "rules.yaml";
+const BUTTON_BINDINGS_FILE: &str = "buttonbindings";
+const BUTTON_BINDINGS_EXT_FILE: &str = "buttonbindings_ext";
+const CONFIG_DIR: &str = "luna";
+const CONFIG_FILE: &str = "luna";
+const KEY_BINDINGS_FILE: &str = "keybindings";
+const KEY_BINDINGS_EXT_FILE: &str = "keybindings_ext";
+const RULES_FILE: &str = "rules";
+const FILE_EXT: [&str; 2] = [".toml", ".yaml"];
 
 
 #[derive(Serialize,Deserialize,PartialEq,Debug,Clone)]
@@ -127,8 +128,8 @@ pub enum WindowPlacement {
 impl Default for Configuration {
     fn default() -> Self {
         Configuration {
-            primary_workspaces: 8,
-            secondary_workspaces: 2,
+            primary_workspaces: 9,
+            secondary_workspaces: 9,
             on_startup: None,
             initial_placement: WindowPlacement::default(),
             layout: LayoutConfiguration::default(),
@@ -140,9 +141,9 @@ impl Default for Configuration {
 impl Default for LayoutConfiguration {
     fn default() -> Self {
         LayoutConfiguration {
-            default: LayoutType::Floating,
-            gap_width: 0,
-            main_ratio: 0.6,
+            default: LayoutType::Dynamic,
+            gap_width: 5,
+            main_ratio: 0.55,
             nmain: 1,
             stack_position: StackPosition::Right,
             stack_mode: StackMode::Split,
@@ -153,18 +154,18 @@ impl Default for LayoutConfiguration {
 impl Default for ThemingConfiguration {
     fn default() -> Self {
         ThemingConfiguration {
-            active_color: 0x5f875f,
-            inactive_color: 0x262626,
-            border_color: 0x262626,
+            active_color: 0x30d6ff,
+            inactive_color: 0x141414,
+            border_color: 0x141414,
             invert_border_color: false,
-            frame_width: (15, 2, 2, 2),
+            frame_width: (10, 1, 1, 1),
             inner_border_width: 0,
             outer_border_width: 0,
             no_decoration: NoDecorThemingConfiguration::default(),
             show_title: false,
             title_vpadding: 0,
             title_hpadding: 5,
-            font: "serif".to_owned(),
+            font: "sans".to_owned(),
         }
     }
 }
