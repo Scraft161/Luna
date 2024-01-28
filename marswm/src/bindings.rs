@@ -306,6 +306,7 @@ pub fn default_key_bindings(nworkspaces: u32) -> Vec<KeyBinding> {
         KeyBinding::new(vec![MODKEY],          "period",     CycleMonitor(1)),
         KeyBinding::new(vec![MODKEY, Shift],   "comma",      MoveMonitor(-1)),
         KeyBinding::new(vec![MODKEY, Shift],   "period",     MoveMonitor(1)),
+        KeyBinding::new(vec![MODKEY, Shift],   "e",          Exit),
 
         KeyBinding::new(vec![MODKEY],          "n",          CycleLayout),
         KeyBinding::new(vec![MODKEY],          "s",          SetLayout(LayoutType::Stack)),
