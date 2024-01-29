@@ -16,6 +16,7 @@ const CONFIG_FILE: &str = "luna";
 const KEY_BINDINGS_FILE: &str = "keybindings";
 const KEY_BINDINGS_EXT_FILE: &str = "keybindings_ext";
 const RULES_FILE: &str = "rules";
+const AUTOSTART_SCRIPT: &str = "autostart";
 const FILE_EXT: [&str; 2] = [".toml", ".yaml"];
 
 
@@ -130,7 +131,7 @@ impl Default for Configuration {
         Configuration {
             primary_workspaces: 9,
             secondary_workspaces: 9,
-            on_startup: None,
+            on_startup: Some(CONFIG_DIR.to_owned() + AUTOSTART_SCRIPT),
             initial_placement: WindowPlacement::default(),
             layout: LayoutConfiguration::default(),
             theming: ThemingConfiguration::default(),
