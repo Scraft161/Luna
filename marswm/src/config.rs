@@ -128,10 +128,24 @@ pub enum WindowPlacement {
 
 impl Default for Configuration {
     fn default() -> Self {
+        let autostart_path = match xdg::BaseDirectories::with_prefix(CONFIG_DIR) {
+            Ok(conf_dir) => {
+                if let Some(path) = conf_dir.find_config_file(AUTOSTART_SCRIPT) {
+                    if let Some(utf_path) = path.to_str() {
+                        Some(String::from(utf_path))
+                    } else {
+                        None
+                    }
+                } else {
+                    None
+                }
+            },
+            Err(_) => None,
+        };
         Configuration {
             primary_workspaces: 9,
             secondary_workspaces: 9,
-            on_startup: Some(CONFIG_DIR.to_owned() + AUTOSTART_SCRIPT),
+            on_startup: autostart_path,
             initial_placement: WindowPlacement::default(),
             layout: LayoutConfiguration::default(),
             theming: ThemingConfiguration::default(),
